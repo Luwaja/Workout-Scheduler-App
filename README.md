@@ -1,1 +1,3 @@
-# Workout-Scheduler-App
+# workout-scheduling-app
+
+"The goal of this project was to develop a mobile application for Android that allows users to create and update their personal workout schedules. The application has a home screen that allows user to view their next three scheduled upcoming workouts that they have scheduled, along with a button to see further out workouts in a calendar view. Whenever there is a scheduled workout currently active, the user will then be able to click that workout and track their progress during the workout, including statistics such as starting time, ending time, and completed sets. Finally, this screen contains a button that will navigate the user to a new screen that is used to view all scheduled workouts that have been scheduled by the user."
