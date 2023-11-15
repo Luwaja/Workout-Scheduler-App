@@ -9,6 +9,7 @@ class Workout(
     @PrimaryKey(autoGenerate = true) val id: Int?,
     @ColumnInfo(name = "name") var name: String,
     @ColumnInfo(name = "description") var description: String,
+    @ColumnInfo(name = "category") var category: String,
     @ColumnInfo(name = "complete") var complete: Boolean,
     @ColumnInfo(name = "date") var date: String,
     @ColumnInfo(name = "duration") var duration: String,
