@@ -21,7 +21,7 @@ class CalendarFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    val calendarViewModel: CalendarViewModel by viewModels {
+    private val calendarViewModel: CalendarViewModel by viewModels {
         CalendarViewModelFactory((requireActivity().application as WorkoutApplication).repository)
     }
 
