@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 
 class WorkoutRepository(private val workoutDao: WorkoutDao) {
     // Get all of the workouts from the Dao
-    val allWorkouts: Flow<List<Workout>> = workoutDao.getAlphabetizedWorkouts()
+    val allWorkouts: Flow<List<Workout>> = workoutDao.getWorkoutsByDate()
 
     // Function to get a live workout from passed in ID (using the Dao)
     fun getWorkout(id:Int):Flow<Workout> {

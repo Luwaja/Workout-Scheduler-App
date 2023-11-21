@@ -1,5 +1,6 @@
 package edu.uark.workoutreminderapp.ui.workouts
 
+import android.graphics.Color
 import android.view.ViewGroup
 import android.view.View
 import androidx.recyclerview.widget.ListAdapter
@@ -41,15 +42,18 @@ class WorkoutsAdapter(val itemClicked:(id:Int)->Unit) : ListAdapter<Workout, Wor
             if (date != null) {
                 val cal: Calendar = Calendar.getInstance()
                 cal.timeInMillis = date
-                if (cal.timeInMillis > System.currentTimeMillis()) {
-                    workoutDateView.setText(
-                        java.text.DateFormat.getDateTimeInstance(
-                            DateFormat.DEFAULT,
-                            DateFormat.SHORT
-                        ).format(cal.timeInMillis)
-                    )
+                workoutDateView.setText(
+                    java.text.DateFormat.getDateTimeInstance(
+                        DateFormat.DEFAULT,
+                        DateFormat.SHORT
+                    ).format(cal.timeInMillis)
+                )
+                if (completed) {
+                    workoutNameView.setBackgroundColor(Color.parseColor("#75FF33"))
+                } else if (!completed && cal.timeInMillis > System.currentTimeMillis() ) {
+                    workoutNameView.setBackgroundColor(Color.parseColor("#EEEF8B"))
                 } else {
-                    workoutDateView.text = ""
+                    workoutNameView.setBackgroundColor(Color.parseColor("#DF5454"))
                 }
             }
         }

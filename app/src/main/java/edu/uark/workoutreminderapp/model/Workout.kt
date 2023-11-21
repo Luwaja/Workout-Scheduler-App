@@ -12,6 +12,6 @@ class Workout(
     @ColumnInfo(name = "category") var category: String,
     @ColumnInfo(name = "complete") var complete: Boolean,
     @ColumnInfo(name = "date") var date: Long,
-    @ColumnInfo(name = "duration") var duration: String,
+    @ColumnInfo(name = "duration") var duration: Long,
     @ColumnInfo(name = "sets") var sets: Int
 )

@@ -37,5 +37,7 @@ interface WorkoutDao {
     @Update
     suspend fun update(workout: Workout):Int
 
-    //TODO: Add function to sort by date of workout
+    // Get the workouts sorted by date of workout.
+    @Query("SELECT * FROM workout_table ORDER BY date ASC")
+    fun getWorkoutsByDate(): Flow<List<Workout>>
 }
