@@ -8,6 +8,11 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import edu.uark.workoutreminderapp.databinding.FragmentHomeBinding
+import edu.uark.workoutreminderapp.WorkoutApplication
+import androidx.fragment.app.viewModels
+import edu.uark.workoutreminderapp.NotificationUtil
+import edu.uark.workoutreminderapp.ui.addworkout.AddWorkoutFragment
+import android.content.Intent
 
 class HomeFragment : Fragment() {
 
@@ -17,13 +22,17 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private val homeViewModel: HomeViewModel by viewModels {
+        HomeViewModelFactory((requireActivity().application as WorkoutApplication).repository)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+//        val homeViewModel =
+//            ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -31,6 +40,24 @@ class HomeFragment : Fragment() {
         val textView: TextView = binding.textHome
         homeViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
+        }
+
+        // Schedule the notifications for each workout.
+        homeViewModel.allWorkouts.observe(viewLifecycleOwner) { workouts ->
+            workouts.let {
+                if (it.size > 0) {
+                    it[0].id?.let { it1 ->
+                        NotificationUtil().createClickableNotification(
+                            requireContext(),
+                            it[0].name,
+                            it[0].category,
+                            // This may or may not work "requireContext()".
+                            Intent(requireContext(), AddWorkoutFragment::class.java),
+                            it1
+                        )
+                    }
+                }
+            }
         }
         return root
     }
