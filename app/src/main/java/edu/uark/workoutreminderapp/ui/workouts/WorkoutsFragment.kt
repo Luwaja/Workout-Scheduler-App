@@ -10,6 +10,9 @@ import androidx.lifecycle.ViewModelProvider
 import edu.uark.workoutreminderapp.databinding.FragmentWorkoutsBinding
 import androidx.fragment.app.viewModels
 import edu.uark.workoutreminderapp.WorkoutApplication
+import android.content.Intent
+import edu.uark.workoutreminderapp.ui.addworkout.AddWorkoutFragment
+import edu.uark.workoutreminderapp.ui.addworkout.EXTRA_ID
 
 class WorkoutsFragment : Fragment() {
 
@@ -23,6 +26,7 @@ class WorkoutsFragment : Fragment() {
         WorkoutsViewModelFactory((requireActivity().application as WorkoutApplication).repository)
     }
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,7 +35,14 @@ class WorkoutsFragment : Fragment() {
 //        val workoutsViewModel =
 //            ViewModelProvider(this).get(WorkoutsViewModel::class.java)
 
-        val adapter = WorkoutsAdapter(this::listItemClicked)
+        //val adapter = WorkoutsAdapter(this::listItemClicked)
+        val adapter = WorkoutsAdapter {
+//            val intent = Intent(requireContext(), AddWorkoutFragment::class.java)
+//            intent.putExtra(EXTRA_ID, it.id)
+
+            // TODO: Add code here to launch new add workout fragment with ID as intent.
+
+        }
 
         _binding = FragmentWorkoutsBinding.inflate(inflater, container, false)
         val root: View = binding.root

@@ -13,21 +13,28 @@ import android.icu.text.DateFormat
 import android.view.LayoutInflater
 import androidx.recyclerview.widget.DiffUtil
 
-class WorkoutsAdapter(val itemClicked:(id:Int)->Unit) : ListAdapter<Workout, WorkoutsAdapter.WorkoutViewHolder>(WorkoutTaskComparator()) {
+
+class WorkoutsAdapter(val itemClicked:(workout:Workout)->Unit) : ListAdapter<Workout, WorkoutsAdapter.WorkoutViewHolder>(WorkoutTaskComparator()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorkoutViewHolder {
         return WorkoutViewHolder.create(parent)
     }
 
     override fun onBindViewHolder(holder: WorkoutViewHolder, position: Int) {
+//        val current = getItem(position)
+//        current.id?.let {
+//            // Change this later if we want to change what the user sees in the workouts list page.
+//            holder.bind(it, current.name, current.category, current.complete, current.date)
+//        }
+//        holder.itemView.tag = current.id
+//        holder.itemView.setOnClickListener {
+//            val itemId = it.tag
+//            itemClicked(it.tag as Int)
+//        }
         val current = getItem(position)
-        current.id?.let {
-            // Change this later if we want to change what the user sees in the workouts list page.
-            holder.bind(it, current.name, current.category, current.complete, current.date)
-        }
-        holder.itemView.tag = current.id
+        holder.bind(current.name, current.category, current.complete, current.date)
+        holder.itemView.tag = current
         holder.itemView.setOnClickListener {
-            val itemId = it.tag
-            itemClicked(it.tag as Int)
+            itemClicked(holder.itemView.tag as Workout)
         }
     }
 
@@ -36,7 +43,7 @@ class WorkoutsAdapter(val itemClicked:(id:Int)->Unit) : ListAdapter<Workout, Wor
         private val workoutCategoryView: TextView = itemView.findViewById(R.id.tvCategory)
         private val workoutDateView: TextView = itemView.findViewById(R.id.tvDate)
 
-        fun bind(id: Int, name: String?, category: String?, completed: Boolean, date: Long?) {
+        fun bind(name: String?, category: String?, completed: Boolean, date: Long?) {
             workoutNameView.text = name
             workoutCategoryView.text = category
             if (date != null) {
