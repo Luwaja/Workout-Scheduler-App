@@ -12,6 +12,7 @@ import edu.uark.workoutreminderapp.databinding.FragmentCalendarBinding
 import edu.uark.workoutreminderapp.model.Workout
 import androidx.fragment.app.viewModels
 import edu.uark.workoutreminderapp.WorkoutApplication
+import android.graphics.Color
 
 class CalendarFragment : Fragment() {
 
@@ -37,7 +38,7 @@ class CalendarFragment : Fragment() {
         val root: View = binding.root
 
         val textView: TextView = binding.textCalendar
-        val calendarView: CalendarView = binding.calendar
+        val calendarView: WorkoutCalendarView = binding.calendar
 
         calendarViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
@@ -46,17 +47,24 @@ class CalendarFragment : Fragment() {
         // This should go through each workout in the database and call the drawWorkoutsOnCalendar for it.
         calendarViewModel.allWorkouts.observe(viewLifecycleOwner) { workouts ->
             workouts.let {
-                drawWorkoutsOnCalendar(it)
+                drawWorkoutsOnCalendar(it, calendarView)
             }
         }
         return root
     }
 
-    private fun drawWorkoutsOnCalendar(workoutList: List<Workout>) {
+    private fun drawWorkoutsOnCalendar(workoutList: List<Workout>, calendarView: WorkoutCalendarView) {
         for (workout in workoutList) {
             //TODO: Make calendar change colors for workouts completed, missed, upcoming.
             //NOTE: Found it it's almost impossible to change the background color of default CalendarView.
             // one possible idea is to use a third-party calendar "MaterialCalendarView" from applandeo library (if we can).
+            if (workout.complete) {
+                calendarView.addHighlightedDay(workout.date, Color.GREEN)
+            } else if (workout.date < System.currentTimeMillis()) {
+                calendarView.addHighlightedDay(workout.date, Color.RED)
+            } else {
+                calendarView.addHighlightedDay(workout.date, Color.YELLOW)
+            }
         }
     }
 
