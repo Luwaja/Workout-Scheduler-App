@@ -13,6 +13,7 @@ import androidx.fragment.app.viewModels
 import edu.uark.workoutreminderapp.NotificationUtil
 import edu.uark.workoutreminderapp.ui.addworkout.AddWorkoutFragment
 import android.content.Intent
+import androidx.appcompat.widget.AppCompatButton
 
 class HomeFragment : Fragment() {
 
@@ -41,6 +42,11 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
+
+//        val newWorkoutButton: AppCompatButton = findViewById(R.id.view_new_workout)
+//        newWorkoutButton.setOnClickListener {
+//            // Handle button click for new workout
+//        }
 
         // Schedule the notifications for each workout.
         homeViewModel.allWorkouts.observe(viewLifecycleOwner) { workouts ->
