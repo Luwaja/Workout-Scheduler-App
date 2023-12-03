@@ -9,7 +9,7 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.coroutines.coroutineScope
 
-class AddWorkoutViewModel(private val repository: WorkoutRepository, private val id:Int) : ViewModel() {
+class AddWorkoutViewModel(private val repository: WorkoutRepository, private val id:Int = -1) : ViewModel() {
 
     // Get a list of all the workouts from the repository
     val allWorkouts: LiveData<List<Workout>> = repository.allWorkouts.asLiveData()
@@ -39,7 +39,7 @@ class AddWorkoutViewModel(private val repository: WorkoutRepository, private val
     }
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is calendar Fragment"
+        value = "This is Add Workout Fragment"
     }
     val text: LiveData<String> = _text
 }
