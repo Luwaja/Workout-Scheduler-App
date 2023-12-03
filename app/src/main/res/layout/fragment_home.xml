@@ -43,6 +43,7 @@
         android:textSize="35sp"
         android:textStyle="bold"
         android:textColor="@color/white"
+        android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/line_title" />
@@ -152,26 +153,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/upcoming_example1" />
-
-    <View
-        android:id="@+id/upcoming_example3"
-        android:layout_width="300dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="20dp"
-        android:background="#696969"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/upcoming_example2" />
-
-    <TextView
-        android:layout_width="300dp"
-        android:layout_height="30dp"
-        android:text="View More Upcoming Workouts"
-        android:textSize="20sp"
-        android:textAlignment="center"
-        android:gravity="center"
-        app:layout_constraintStart_toStartOf="@id/upcoming_example3"
-        app:layout_constraintTop_toTopOf="@id/upcoming_example3" />
 
     <TextView
         android:id="@+id/text_home"
