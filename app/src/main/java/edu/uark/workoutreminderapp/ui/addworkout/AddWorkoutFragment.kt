@@ -28,8 +28,8 @@ class AddWorkoutFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val addWorkoutViewModel =
-            ViewModelProvider(this).get(AddWorkoutViewModel::class.java)
+//        val addWorkoutViewModel =
+//            ViewModelProvider(this).get(AddWorkoutViewModel::class.java)
 
         _binding = FragmentAddworkoutBinding.inflate(inflater, container, false)
         val root: View = binding.root

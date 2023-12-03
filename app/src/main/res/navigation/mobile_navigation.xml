@@ -22,4 +22,10 @@
         android:name="edu.uark.workoutreminderapp.ui.workouts.WorkoutsFragment"
         android:label="@string/title_workouts"
         tools:layout="@layout/fragment_workouts" />
+
+    <fragment
+        android:id="@+id/navigation_addworkout"
+        android:name="edu.uark.workoutreminderapp.ui.addworkout.AddWorkoutFragment"
+        android:label="AddWorkout"
+        tools:layout="@layout/fragment_addworkout" />
 </navigation>
