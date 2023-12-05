@@ -74,7 +74,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_upcoming">
 
-        <View
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/view_upcoming"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -134,7 +134,7 @@
         android:textSize="15sp"
         android:textStyle="bold" />
 
-    <View
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/upcoming_example1"
         android:layout_width="300dp"
         android:layout_height="50dp"
@@ -144,7 +144,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/frame_upcoming" />
 
-    <View
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/upcoming_example2"
         android:layout_width="300dp"
         android:layout_height="50dp"
