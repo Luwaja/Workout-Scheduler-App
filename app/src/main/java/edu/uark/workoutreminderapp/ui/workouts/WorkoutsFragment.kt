@@ -11,7 +11,12 @@ import edu.uark.workoutreminderapp.databinding.FragmentWorkoutsBinding
 import androidx.fragment.app.viewModels
 import edu.uark.workoutreminderapp.WorkoutApplication
 import android.content.Intent
+import android.util.Log
 import edu.uark.workoutreminderapp.ui.addworkout.AddWorkoutFragment
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import edu.uark.workoutreminderapp.R
 import edu.uark.workoutreminderapp.ui.addworkout.EXTRA_ID
 
 class WorkoutsFragment : Fragment() {
@@ -34,18 +39,21 @@ class WorkoutsFragment : Fragment() {
     ): View {
 //        val workoutsViewModel =
 //            ViewModelProvider(this).get(WorkoutsViewModel::class.java)
-
-        //val adapter = WorkoutsAdapter(this::listItemClicked)
-        val adapter = WorkoutsAdapter {
-//            val intent = Intent(requireContext(), AddWorkoutFragment::class.java)
-//            intent.putExtra(EXTRA_ID, it.id)
-
-            // TODO: Add code here to launch new add workout fragment with ID as intent.
-
-        }
-
         _binding = FragmentWorkoutsBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        val recyclerView = binding.recyclerview
+        val adapter = WorkoutsAdapter {
+            val intent = Intent(requireContext(), AddWorkoutFragment::class.java)
+            intent.putExtra(EXTRA_ID, it.id)
+            val transaction = activity?.supportFragmentManager?.beginTransaction()
+            transaction?.replace(R.id.container, AddWorkoutFragment())
+            transaction?.disallowAddToBackStack()
+            transaction?.commit()
+        }
+
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         val textView: TextView = binding.textWorkouts
         workoutsViewModel.text.observe(viewLifecycleOwner) {
@@ -54,6 +62,7 @@ class WorkoutsFragment : Fragment() {
 
         // This should go through each workout and create the list item for it usingthe adapter.
         workoutsViewModel.allWorkouts.observe(viewLifecycleOwner) { workouts ->
+            Log.d("WorkoutsFragment", "Adding workout: ${workouts.size}")
             workouts.let {
                 adapter.submitList(it)
             }
