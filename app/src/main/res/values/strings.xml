@@ -13,4 +13,6 @@
     <string name="title">Title</string>
     <string name="descriptionHint">Description ...</string>
     <string name="all_workouts">All Workouts</string>
+    <string name="completed">Completed</string>
+    <string name="sets">Sets:</string>
 </resources>
