@@ -11,4 +11,6 @@
     <string name="category">Category</string>
     <string name="descriptionExample">Description description description description description description description description description</string>
     <string name="title">Title</string>
+    <string name="descriptionHint">Description ...</string>
+    <string name="all_workouts">All Workouts</string>
 </resources>
