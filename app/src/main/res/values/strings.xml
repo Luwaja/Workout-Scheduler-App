@@ -13,4 +13,5 @@
     <string name="title">Title</string>
     <string name="descriptionHint">Description ...</string>
     <string name="all_workouts">All Workouts</string>
+    <string name="due_date">Due Date</string>
 </resources>

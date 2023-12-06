@@ -62,9 +62,6 @@ class HomeFragment : Fragment() {
         val root: View = binding.root
 
         val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
 
         firstWorkoutButton = binding.upcomingExample1
         secondWorkoutButton = binding.upcomingExample2

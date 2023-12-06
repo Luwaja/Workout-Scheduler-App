@@ -41,9 +41,6 @@ class CalendarFragment : Fragment() {
         val textView: TextView = binding.textCalendar
         val calendarView: WorkoutCalendarView = binding.calendar
 
-        calendarViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
 
         // This should go through each workout in the database and call the drawWorkoutsOnCalendar for it.
         calendarViewModel.allWorkouts.observe(viewLifecycleOwner) { workouts ->

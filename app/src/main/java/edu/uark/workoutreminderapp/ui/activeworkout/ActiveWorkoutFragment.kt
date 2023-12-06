@@ -48,10 +48,6 @@ class ActiveWorkoutFragment : Fragment() {
         //editDuration = binding.editDuration
         //editSets = binding.editSets
 
-        val textView: TextView = binding.textActiveworkout
-        activeWorkoutViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
         return root
     }
 

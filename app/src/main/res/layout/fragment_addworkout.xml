@@ -72,6 +72,22 @@
         app:layout_constraintTop_toBottomOf="@id/editDescription"
         android:inputType="text"/>
 
+
+    <Button
+        android:id="@+id/editTextDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:text="@string/due_date"
+        android:textAlignment="viewEnd"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editCategory" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_save"
         android:layout_width="wrap_content"

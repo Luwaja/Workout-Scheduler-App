@@ -31,7 +31,7 @@ class WorkoutsAdapter(val itemClicked:(workout:Workout)->Unit) : ListAdapter<Wor
 //            itemClicked(it.tag as Int)
 //        }
         val current = getItem(position)
-        holder.bind(current.name, current.category, current.complete, current.date)
+        holder.bind(current.name, current.category, current.complete, current.date, current.description)
         holder.itemView.tag = current
         holder.itemView.setOnClickListener {
             itemClicked(holder.itemView.tag as Workout)
@@ -42,10 +42,12 @@ class WorkoutsAdapter(val itemClicked:(workout:Workout)->Unit) : ListAdapter<Wor
         private val workoutNameView: TextView = itemView.findViewById(R.id.tvName)
         private val workoutCategoryView: TextView = itemView.findViewById(R.id.tvCategory)
         private val workoutDateView: TextView = itemView.findViewById(R.id.tvDate)
+        private val workoutDescriptionView: TextView = itemView.findViewById(R.id.tvDescription)
 
-        fun bind(name: String?, category: String?, completed: Boolean, date: Long?) {
+        fun bind(name: String?, category: String?, completed: Boolean, date: Long?, desc: String?) {
             workoutNameView.text = name
             workoutCategoryView.text = category
+            workoutDescriptionView.text = desc
             if (date != null) {
                 val cal: Calendar = Calendar.getInstance()
                 cal.timeInMillis = date

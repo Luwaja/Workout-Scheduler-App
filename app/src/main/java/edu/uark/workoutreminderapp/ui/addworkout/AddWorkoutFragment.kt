@@ -5,6 +5,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -12,10 +14,18 @@ import androidx.lifecycle.ViewModelProvider
 import edu.uark.workoutreminderapp.WorkoutApplication
 import edu.uark.workoutreminderapp.databinding.FragmentAddworkoutBinding
 import androidx.fragment.app.viewModels
+import edu.uark.workoutreminderapp.DatePickerFragment
+import edu.uark.workoutreminderapp.TimePickerFragment
 import edu.uark.workoutreminderapp.model.Workout
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
+import java.text.DateFormat
+import java.util.Calendar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentActivity
+import androidx.navigation.fragment.findNavController
+import edu.uark.workoutreminderapp.R
 
 const val EXTRA_ID: String = "edu.uark.workoutreminderapp.AddWorkoutFragment.EXTRA_ID"
 class AddWorkoutFragment : Fragment() {
@@ -32,6 +42,8 @@ class AddWorkoutFragment : Fragment() {
     private lateinit var editTitle: EditText
     private lateinit var editDesc: EditText
     private lateinit var editCategory: EditText
+    private lateinit var editDate: Button
+    private lateinit var editComplete: CheckBox
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,6 +58,8 @@ class AddWorkoutFragment : Fragment() {
         editTitle = binding.editTitle
         editDesc = binding.editDescription
         editCategory = binding.editCategory
+        editDate = binding.editTextDate
+        editComplete = binding.workoutCheckbox
 
         val args = arguments
         var id = args?.getInt("ID")
@@ -71,12 +85,32 @@ class AddWorkoutFragment : Fragment() {
             }
         }
 
+        editDate.setOnClickListener {
+            dateClicked()
+        }
 
+        val btnSave = binding.buttonSave
+        btnSave.setOnClickListener {
+            CoroutineScope(SupervisorJob()).launch {
+                if (id==-1) {
+                    getWorkoutFromUI()?.let { workout -> addWorkoutViewModel.insert(workout) }
+                } else {
+                    getWorkoutFromUI()?.let { workout -> addWorkoutViewModel.update(workout) }
+                }
+            }
+            findNavController().navigate(R.id.navigation_home)
+        }
 
-
-        val textView: TextView = binding.textAddworkout
-        addWorkoutViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        val btnDelete = binding.buttonDelete
+        btnDelete.setOnClickListener {
+            if (id == -1) {
+                findNavController().navigate(R.id.navigation_home)
+            } else {
+                CoroutineScope(SupervisorJob()).launch {
+                    addWorkoutViewModel.deleteWorkout(id)
+                }
+            }
+            findNavController().navigate(R.id.navigation_home)
         }
 
         return root
@@ -94,6 +128,11 @@ class AddWorkoutFragment : Fragment() {
             workout.name = editTitle.text.toString()
             workout.description = editDesc.text.toString()
             workout.category = editCategory.text.toString()
+            workout.date = java.text.DateFormat.getDateTimeInstance(
+                DateFormat.DEFAULT,
+                DateFormat.SHORT
+            ).parse(editDate.text.toString())?.time!!
+            workout.complete = editComplete.isChecked
         }
         return workout
     }
@@ -102,7 +141,32 @@ class AddWorkoutFragment : Fragment() {
         editTitle.setText(workout.name)
         editDesc.setText(workout.description)
         editCategory.setText(workout.category)
+        if (workout.date != null) {
+            val cal: Calendar = Calendar.getInstance()
+            cal.timeInMillis = workout.date!!
+            editDate.setText(java.text.DateFormat.getDateTimeInstance(
+                DateFormat.DEFAULT,
+                DateFormat.SHORT
+            ).format(cal.timeInMillis))
+        } else {
+            editDate.setText("")
+        }
+        editComplete.isChecked = workout.complete
+    }
 
+    fun dateSet(calendar: Calendar) {
+        TimePickerFragment(calendar, this::timeSet).show(childFragmentManager, "timePicker")
+    }
+
+    fun timeSet(calendar: Calendar) {
+        editDate.setText(java.text.DateFormat.getDateTimeInstance(
+            DateFormat.DEFAULT,
+            DateFormat.SHORT
+        ).format(calendar.timeInMillis))
+    }
+
+    fun dateClicked() {
+        DatePickerFragment(this::dateSet).show(childFragmentManager, "datePicker")
     }
 
     override fun onDestroyView() {
