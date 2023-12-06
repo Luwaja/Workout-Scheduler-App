@@ -122,7 +122,9 @@ class HomeFragment : Fragment() {
             }
             activeWorkoutButton?.setOnClickListener {
                 Log.d("HomeFragment", "Active Workout Button Clicked!")
-                // TODO: Launch Fragment with activeWorkout!!.id passed to open the add workouts page for that workout.
+                val workoutId = Bundle()
+                activeWorkout!!.id?.let { it1 -> workoutId.putInt("ID", it1)}
+                findNavController().navigate(R.id.navigation_activeworkout, workoutId)
             }
         } else {
             activeWorkoutButton?.text = "No Workout Found."
@@ -134,7 +136,9 @@ class HomeFragment : Fragment() {
             firstWorkoutButton?.text = "${firstWorkout!!.name}      ${formatDate(date)}"
             firstWorkoutButton?.setOnClickListener {
                 Log.d("HomeFragment", "First Workout Button Clicked!")
-                // TODO: Launch Fragment with activeWorkout!!.id passed to open the add workouts page for that workout.
+                val workoutId = Bundle()
+                firstWorkout!!.id?.let { it1 -> workoutId.putInt("ID", it1) }
+                findNavController().navigate(R.id.navigation_addworkout, workoutId)
             }
         } else {
             firstWorkoutButton?.text = "No Workout Found."
@@ -145,7 +149,9 @@ class HomeFragment : Fragment() {
             secondWorkoutButton?.text = "${secondWorkout!!.name}      ${formatDate(date)}"
             secondWorkoutButton?.setOnClickListener {
                 Log.d("HomeFragment", "Second Workout Button Clicked!")
-                // TODO: Launch Fragment with activeWorkout!!.id passed to open the add workouts page for that workout.
+                val workoutId = Bundle()
+                secondWorkout!!.id?.let { it1 -> workoutId.putInt("ID", it1) }
+                findNavController().navigate(R.id.navigation_addworkout, workoutId)
             }
         } else {
             secondWorkoutButton?.text = "No Workout Found."
