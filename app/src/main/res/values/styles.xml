@@ -21,6 +21,7 @@
     <!--  Component styles  -->
     <style name="FloatingActionButtonStyle" parent="Widget.Design.FloatingActionButton">
         <item name="shapeAppearanceOverlay">@style/FabShapeStyle1</item>
+        <item name="backgroundTint">#AFAFAF</item>
     </style>
 
     <!--  Shape styles  -->
@@ -28,6 +29,5 @@
         <item name="cornerSize">10%</item>
         <item name="cornerFamily">rounded</item>
     </style>
-
 
 </resources>

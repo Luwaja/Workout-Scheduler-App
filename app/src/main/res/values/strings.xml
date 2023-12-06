@@ -4,4 +4,11 @@
     <string name="title_home">Home</string>
     <string name="title_calendar">Calendar</string>
     <string name="title_workouts">Workouts</string>
+    <string name="save">Save</string>
+    <string name="workouts">Workouts</string>
+    <string name="workout_title">Workout Title</string>
+    <string name="placeholderTime">Month/Day/Year 00:00?m</string>
+    <string name="category">Category</string>
+    <string name="descriptionExample">Description description description description description description description description description</string>
+    <string name="title">Title</string>
 </resources>
