@@ -9,7 +9,11 @@
         android:id="@+id/navigation_home"
         android:name="edu.uark.workoutreminderapp.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_addworkout"
+            app:destination="@id/navigation_addworkout" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_calendar"
@@ -27,5 +31,9 @@
         android:id="@+id/navigation_addworkout"
         android:name="edu.uark.workoutreminderapp.ui.addworkout.AddWorkoutFragment"
         android:label="AddWorkout"
-        tools:layout="@layout/fragment_addworkout" />
+        tools:layout="@layout/fragment_addworkout" >
+        <action
+            android:id="@+id/action_navigation_addworkout_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
 </navigation>

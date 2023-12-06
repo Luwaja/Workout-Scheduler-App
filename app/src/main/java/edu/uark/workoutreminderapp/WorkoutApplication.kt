@@ -6,7 +6,6 @@ import edu.uark.workoutreminderapp.model.WorkoutDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 
-
 class WorkoutApplication : Application() {
     val applicationScope = CoroutineScope(SupervisorJob())
     val database by lazy { WorkoutDatabase.getDatabase(this, applicationScope) }

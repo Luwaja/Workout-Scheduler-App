@@ -13,6 +13,7 @@ import edu.uark.workoutreminderapp.databinding.ActivityMainBinding
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Build
+import android.util.Log
 
 class MainActivity : AppCompatActivity() {
 
@@ -60,5 +61,10 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+    }
+
+    override fun onBackPressed() {
+        Log.d("MainActivity", "Back Pressed")
+        super.onBackPressed()
     }
 }

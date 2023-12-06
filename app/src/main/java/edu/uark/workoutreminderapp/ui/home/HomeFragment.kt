@@ -46,12 +46,7 @@ class HomeFragment : Fragment() {
             textView.text = it
         }
 
-//        val newWorkoutButton: AppCompatButton = findViewById(R.id.view_new_workout)
-//        newWorkoutButton.setOnClickListener {
-//            // Handle button click for new workout
-//        }
-
-        val newWorkoutButton: AppCompatButton = binding.viewNewWorkout
+        val newWorkoutButton: AppCompatButton = binding.btnNewWorkout
         newWorkoutButton.setOnClickListener {
             Log.d("HomeFragment", "Launching Add Workout Fragment.")
             findNavController().navigate(R.id.navigation_addworkout)

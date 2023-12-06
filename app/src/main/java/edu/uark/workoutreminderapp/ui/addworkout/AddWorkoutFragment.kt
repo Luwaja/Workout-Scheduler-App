@@ -1,6 +1,7 @@
 package edu.uark.workoutreminderapp.ui.addworkout
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,6 +51,7 @@ class AddWorkoutFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        Log.d("AddWorkoutFragment", "onDestroyView")
         _binding = null
     }
 }
