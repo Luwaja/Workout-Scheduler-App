@@ -25,6 +25,12 @@ class ActiveWorkoutViewModel(private val repository: WorkoutRepository, private 
         }
     }
 
+    suspend fun updateSets(sets: Int) {
+        coroutineScope {
+
+        }
+    }
+
     private val _text = MutableLiveData<String>().apply {
         value = "This is Active Workout Fragment"
     }

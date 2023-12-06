@@ -14,6 +14,7 @@ import android.content.Intent
 import android.util.Log
 import edu.uark.workoutreminderapp.ui.addworkout.AddWorkoutFragment
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import edu.uark.workoutreminderapp.R
@@ -42,14 +43,16 @@ class WorkoutsFragment : Fragment() {
         _binding = FragmentWorkoutsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        val newWorkoutButton = binding.btnNewWorkout
+        newWorkoutButton.setOnClickListener {
+            val workoutId = Bundle()
+            workoutId.putInt("ID", -1)
+            findNavController().navigate(R.id.navigation_addworkout, workoutId)
+        }
+
         val recyclerView = binding.recyclerview
         val adapter = WorkoutsAdapter {
-            val intent = Intent(requireContext(), AddWorkoutFragment::class.java)
-            intent.putExtra(EXTRA_ID, it.id)
-            val transaction = activity?.supportFragmentManager?.beginTransaction()
-            transaction?.replace(R.id.container, AddWorkoutFragment())
-            transaction?.disallowAddToBackStack()
-            transaction?.commit()
+            it.id?.let { it1 -> listItemClicked(it1) }
         }
 
         recyclerView.adapter = adapter
@@ -69,7 +72,9 @@ class WorkoutsFragment : Fragment() {
     }
 
     private fun listItemClicked(id: Int) {
-        //TODO: Open the clicked workout screen (add workout) using the passed in ID.
+        val workoutId = Bundle()
+        workoutId.putInt("ID", id)
+        findNavController().navigate(R.id.navigation_addworkout, workoutId)
     }
 
     override fun onDestroyView() {
