@@ -6,6 +6,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.graphics.Color
 import android.graphics.Canvas
+import android.util.Log
 import java.util.*
 
 // This is a custom calendar view that extends the current calendar view, but allows me to override the onDraw() function
@@ -20,12 +21,13 @@ class WorkoutCalendarView : CalendarView {
 
     init {
         paint.style = Paint.Style.FILL
+        this.setWillNotDraw(false)
     }
 
     // Add a workout with specified color
     fun addHighlightedDay(timeInMillis: Long, color: Int) {
         highlightDays[timeInMillis] = color
-        invalidate()
+        Log.d("WorkoutCalendarView", "Invalidate Called.")
     }
 
     // Remove workout from calendar view
@@ -35,11 +37,12 @@ class WorkoutCalendarView : CalendarView {
     }
 
     override fun onDraw(canvas: Canvas) {
+        Log.d("WorkoutCalendarView", "onDraw() called.")
         super.onDraw(canvas)
 
         val firstVisibleDayOfMonth = getFirstVisibleDay()
-        val cellWidth = width / 7f
-        val cellHeight = height / 7f
+        val cellWidth = width / 10f
+        val cellHeight = height / 10f
         val cellMargin = 2f
 
         for ((dayInMillis, color) in highlightDays) {
@@ -50,6 +53,7 @@ class WorkoutCalendarView : CalendarView {
     }
 
     private fun drawHighlightedDay(canvas: Canvas, cell: FloatArray, color: Int) {
+        Log.d("WorkoutCalendarView", "Calling drawHighlightedDay")
         paint.color = color
         canvas.drawCircle(cell[0], cell[1], cell[2] / 2, paint)
     }
@@ -58,14 +62,19 @@ class WorkoutCalendarView : CalendarView {
         val dayOfMonth = day - firstVisibleDayOfMonth
         val col = dayOfMonth % 7
         val row = dayOfMonth / 7
-        val x = col * (cellWidth + cellMargin)
-        val y = row * (cellHeight + cellMargin)
-        return floatArrayOf(x + cellWidth / 2, y + cellHeight / 2, cellWidth)
+        val x = col * (cellWidth + cellMargin) + 16.0F
+        val y = row * (cellHeight + cellMargin) + 374.0F
+        Log.d("WorkoutCalendarView", "DayofMonth: ${dayOfMonth} day: $day firstVisibleDayOfMonth: $firstVisibleDayOfMonth")
+        return floatArrayOf(x + cellWidth / 2, y + cellHeight / 2, 100.0F)
     }
 
     private fun getFirstVisibleDay(): Int {
         val calendar = Calendar.getInstance()
-        calendar.timeInMillis = date
+        val firstDayOfWeek = firstDayOfWeek
+        val curDayWeek = calendar.get(Calendar.DAY_OF_WEEK)
+
+        val daysUntilVisDay = (curDayWeek - firstDayOfWeek + 7) % 7
+        calendar.add(Calendar.DAY_OF_MONTH, -daysUntilVisDay)
         return calendar.get(Calendar.DAY_OF_MONTH)
     }
 

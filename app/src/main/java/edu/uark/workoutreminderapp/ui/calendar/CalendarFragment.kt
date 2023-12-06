@@ -13,6 +13,7 @@ import edu.uark.workoutreminderapp.model.Workout
 import androidx.fragment.app.viewModels
 import edu.uark.workoutreminderapp.WorkoutApplication
 import android.graphics.Color
+import android.util.Log
 
 class CalendarFragment : Fragment() {
 
@@ -49,6 +50,7 @@ class CalendarFragment : Fragment() {
             workouts.let {
                 drawWorkoutsOnCalendar(it, calendarView)
             }
+            calendarView.invalidate()
         }
         return root
     }
@@ -58,6 +60,7 @@ class CalendarFragment : Fragment() {
             //TODO: Make calendar change colors for workouts completed, missed, upcoming.
             //NOTE: Found it it's almost impossible to change the background color of default CalendarView.
             // one possible idea is to use a third-party calendar "MaterialCalendarView" from applandeo library (if we can).
+            Log.d("CalendarFragment", "Updating workout ${workout.id} with complete ${workout.complete}")
             if (workout.complete) {
                 calendarView.addHighlightedDay(workout.date, Color.GREEN)
             } else if (workout.date < System.currentTimeMillis()) {
