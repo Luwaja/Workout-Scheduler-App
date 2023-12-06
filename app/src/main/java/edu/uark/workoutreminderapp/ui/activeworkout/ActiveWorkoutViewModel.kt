@@ -26,7 +26,7 @@ class ActiveWorkoutViewModel(private val repository: WorkoutRepository, private 
     }
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is Add Workout Fragment"
+        value = "This is Active Workout Fragment"
     }
     val text: LiveData<String> = _text
 }
