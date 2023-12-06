@@ -13,11 +13,11 @@ import edu.uark.workoutreminderapp.WorkoutApplication
 import androidx.fragment.app.viewModels
 import edu.uark.workoutreminderapp.NotificationUtil
 import edu.uark.workoutreminderapp.ui.addworkout.AddWorkoutFragment
+import edu.uark.workoutreminderapp.R
 import android.content.Intent
 import android.graphics.Color
 import android.util.Log
 import androidx.appcompat.widget.AppCompatButton
-import edu.uark.workoutreminderapp.R
 import androidx.navigation.fragment.findNavController
 import edu.uark.workoutreminderapp.model.Workout
 import kotlinx.coroutines.CoroutineScope
@@ -70,13 +70,7 @@ class HomeFragment : Fragment() {
         secondWorkoutButton = binding.upcomingExample2
         activeWorkoutButton = binding.viewUpcoming
 
-
-//        val newWorkoutButton: AppCompatButton = findViewById(R.id.view_new_workout)
-//        newWorkoutButton.setOnClickListener {
-//            // Handle button click for new workout
-//        }
-
-        val newWorkoutButton: AppCompatButton = binding.viewNewWorkout
+        val newWorkoutButton: AppCompatButton = binding.btnNewWorkout
         newWorkoutButton.setOnClickListener {
             Log.d("HomeFragment", "Launching Add Workout Fragment.")
             findNavController().navigate(R.id.navigation_addworkout)
