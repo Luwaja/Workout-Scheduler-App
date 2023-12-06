@@ -7,6 +7,7 @@ import edu.uark.workoutreminderapp.model.Workout
 import edu.uark.workoutreminderapp.model.WorkoutRepository
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.ViewModelProvider
+import kotlinx.coroutines.coroutineScope
 
 class HomeViewModel(private val repository: WorkoutRepository): ViewModel() {
 

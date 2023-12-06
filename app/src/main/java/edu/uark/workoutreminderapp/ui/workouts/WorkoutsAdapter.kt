@@ -56,11 +56,17 @@ class WorkoutsAdapter(val itemClicked:(workout:Workout)->Unit) : ListAdapter<Wor
                     ).format(cal.timeInMillis)
                 )
                 if (completed) {
-                    workoutNameView.setBackgroundColor(Color.parseColor("#75FF33"))
+                    workoutNameView.setBackgroundColor(Color.parseColor("#73c977"))
+                    workoutCategoryView.setBackgroundColor(Color.parseColor("#73c977"))
+                    workoutDateView.setBackgroundColor(Color.parseColor("#73c977"))
                 } else if (!completed && cal.timeInMillis > System.currentTimeMillis() ) {
                     workoutNameView.setBackgroundColor(Color.parseColor("#EEEF8B"))
+                    workoutCategoryView.setBackgroundColor(Color.parseColor("#EEEF8B"))
+                    workoutDateView.setBackgroundColor(Color.parseColor("#EEEF8B"))
                 } else {
-                    workoutNameView.setBackgroundColor(Color.parseColor("#DF5454"))
+                    workoutNameView.setBackgroundColor(Color.parseColor("#c94d4d"))
+                    workoutCategoryView.setBackgroundColor(Color.parseColor("#c94d4d"))
+                    workoutDateView.setBackgroundColor(Color.parseColor("#c94d4d"))
                 }
             }
         }

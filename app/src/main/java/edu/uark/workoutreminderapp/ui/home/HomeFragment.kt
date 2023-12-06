@@ -1,5 +1,6 @@
 package edu.uark.workoutreminderapp.ui.home
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,7 +20,10 @@ import androidx.appcompat.widget.AppCompatButton
 import edu.uark.workoutreminderapp.R
 import androidx.navigation.fragment.findNavController
 import edu.uark.workoutreminderapp.model.Workout
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -29,6 +33,14 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
 
+    var firstWorkout: Workout? = null
+    var secondWorkout: Workout? = null
+    var activeWorkout: Workout? = null
+
+    var firstWorkoutButton: AppCompatButton? = null
+    var secondWorkoutButton: AppCompatButton? = null
+    var activeWorkoutButton: AppCompatButton? = null
+
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -37,6 +49,7 @@ class HomeFragment : Fragment() {
         HomeViewModelFactory((requireActivity().application as WorkoutApplication).repository)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -53,13 +66,10 @@ class HomeFragment : Fragment() {
             textView.text = it
         }
 
-        val firstWorkoutButton: AppCompatButton = binding.upcomingExample1
-        val secondWorkoutButton: AppCompatButton = binding.upcomingExample2
-        val activeWorkoutButton: AppCompatButton = binding.viewUpcoming
+        firstWorkoutButton = binding.upcomingExample1
+        secondWorkoutButton = binding.upcomingExample2
+        activeWorkoutButton = binding.viewUpcoming
 
-        var firstWorkout: Workout? = null
-        var secondWorkout: Workout? = null
-        var activeWorkout: Workout? = null
 
 //        val newWorkoutButton: AppCompatButton = findViewById(R.id.view_new_workout)
 //        newWorkoutButton.setOnClickListener {
@@ -87,59 +97,65 @@ class HomeFragment : Fragment() {
                         )
                     }
                 }
+                Log.d("HomeFragment", "Adding Workout: ${workouts.size}")
+                if (it.size >= 3) {
+                    activeWorkout = it[0]
+                    firstWorkout = it[1]
+                    secondWorkout = it[2]
+                } else if (it.size == 2) {
+                    activeWorkout = it[0]
+                    firstWorkout = it[1]
+                } else if (it.size == 1) {
+                    activeWorkout = it[0]
+                }
+                setWorkouts()
             }
         }
 
-        // Finds the new two workouts coming up.
-        homeViewModel.allWorkouts.observe(viewLifecycleOwner) { workouts ->
-            if (workouts.size >= 3) {
-                activeWorkout = workouts[0]
-                firstWorkout = workouts[1]
-                secondWorkout = workouts[2]
-            } else if (workouts.size == 2) {
-                activeWorkout = workouts[0]
-                secondWorkout = workouts[1]
-            } else if (workouts.size == 1) {
-                activeWorkout = workouts[0]
-            }
-        }
 
+        return root
+    }
+
+    @SuppressLint("SetTextI18n")
+    fun setWorkouts() {
         // Set the buttons on the home view to have the text of the workouts.
         // If there is a active workout, change the button color to red.
         if (activeWorkout != null) {
             val date = Date(activeWorkout!!.date)
-            activeWorkoutButton.text = "${activeWorkout!!.name}      ${formatDate(date)}"
+            activeWorkoutButton?.text = "${activeWorkout!!.name}      ${formatDate(date)}"
             if (System.currentTimeMillis()-3600000 <= activeWorkout!!.date && activeWorkout!!.date <= System.currentTimeMillis()+3600000) {
-                activeWorkoutButton.setBackgroundColor(Color.parseColor("#8E0000"))
+                activeWorkoutButton?.setBackgroundColor(Color.parseColor("#8E0000"))
             }
-            activeWorkoutButton.setOnClickListener {
+            activeWorkoutButton?.setOnClickListener {
+                Log.d("HomeFragment", "Active Workout Button Clicked!")
                 // TODO: Launch Fragment with activeWorkout!!.id passed to open the add workouts page for that workout.
             }
         } else {
-            activeWorkoutButton.text = "No Workout Found."
+            activeWorkoutButton?.text = "No Workout Found."
         }
 
         if (firstWorkout != null) {
+            Log.d("HomeFragment", "Adding workout with id: ${firstWorkout!!.id}")
             val date = Date(firstWorkout!!.date)
-            firstWorkoutButton.text = "${firstWorkout!!.name}      ${formatDate(date)}"
-            firstWorkoutButton.setOnClickListener {
+            firstWorkoutButton?.text = "${firstWorkout!!.name}      ${formatDate(date)}"
+            firstWorkoutButton?.setOnClickListener {
+                Log.d("HomeFragment", "First Workout Button Clicked!")
                 // TODO: Launch Fragment with activeWorkout!!.id passed to open the add workouts page for that workout.
             }
         } else {
-            firstWorkoutButton.text = "No Workout Found."
+            firstWorkoutButton?.text = "No Workout Found."
         }
 
         if (secondWorkout != null) {
             val date = Date(secondWorkout!!.date)
-            secondWorkoutButton.text = "${secondWorkout!!.name}      ${formatDate(date)}"
-            secondWorkoutButton.setOnClickListener {
+            secondWorkoutButton?.text = "${secondWorkout!!.name}      ${formatDate(date)}"
+            secondWorkoutButton?.setOnClickListener {
+                Log.d("HomeFragment", "Second Workout Button Clicked!")
                 // TODO: Launch Fragment with activeWorkout!!.id passed to open the add workouts page for that workout.
             }
         } else {
-            secondWorkoutButton.text = "No Workout Found."
+            secondWorkoutButton?.text = "No Workout Found."
         }
-
-        return root
     }
 
     override fun onDestroyView() {
