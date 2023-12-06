@@ -28,6 +28,12 @@
         tools:layout="@layout/fragment_workouts" />
 
     <fragment
+        android:id="@+id/navigation_activeworkout"
+        android:name="edu.uark.workoutreminderapp.ui.activeworkout.ActiveWorkoutFragment"
+        android:label="Active Workout"
+        tools:layout="@layout/fragment_activeworkout" />
+
+    <fragment
         android:id="@+id/navigation_addworkout"
         android:name="edu.uark.workoutreminderapp.ui.addworkout.AddWorkoutFragment"
         android:label="AddWorkout"

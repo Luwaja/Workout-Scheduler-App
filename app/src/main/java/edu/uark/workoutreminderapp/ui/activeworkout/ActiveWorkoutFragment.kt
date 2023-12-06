@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -20,6 +21,9 @@ class ActiveWorkoutFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private lateinit var editDuration: EditText
+    private lateinit var editSets: EditText
+
     private val activeWorkoutViewModel: ActiveWorkoutViewModel by viewModels {
         ActiveWorkoutViewModelFactory((requireActivity().application as WorkoutApplication).repository, -1)
     }
@@ -35,7 +39,14 @@ class ActiveWorkoutFragment : Fragment() {
         _binding = FragmentActiveworkoutBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        val args = arguments
+        var id = args?.getInt("ID")
+        if (id == null) {
+            id = -1
+        }
 
+        //editDuration = binding.editDuration
+        //editSets = binding.editSets
 
         val textView: TextView = binding.textActiveworkout
         activeWorkoutViewModel.text.observe(viewLifecycleOwner) {
