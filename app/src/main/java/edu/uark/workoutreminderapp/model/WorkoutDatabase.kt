@@ -28,8 +28,8 @@ abstract class WorkoutDatabase : RoomDatabase() {
 
                     // Add sample workouts to start in the database for testing.
                     // TODO: Add these later
-                    workoutDao.insert(Workout(1,"Test Workout", "Test Description", "Category1", false, System.currentTimeMillis(), 26000, 2))
-                    workoutDao.insert(Workout(2, "2nd Workout", "2nd Desc", "Category2", true, System.currentTimeMillis(), 36000, 3))
+                    workoutDao.insert(Workout(1,"Test Workout", "Test Description", "Category1", false, System.currentTimeMillis(), 50, 2, 1000))
+                    workoutDao.insert(Workout(2, "2nd Workout", "2nd Desc", "Category2", true, System.currentTimeMillis(), 90, 3, 2000))
                 }
             }
         }

@@ -38,7 +38,6 @@ class CalendarFragment : Fragment() {
         _binding = FragmentCalendarBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textCalendar
         val calendarView: WorkoutCalendarView = binding.calendar
 
 
@@ -59,11 +58,9 @@ class CalendarFragment : Fragment() {
             // one possible idea is to use a third-party calendar "MaterialCalendarView" from applandeo library (if we can).
             Log.d("CalendarFragment", "Updating workout ${workout.id} with complete ${workout.complete}")
             if (workout.complete) {
-                calendarView.addHighlightedDay(workout.date, Color.GREEN)
-            } else if (workout.date < System.currentTimeMillis()) {
                 calendarView.addHighlightedDay(workout.date, Color.RED)
             } else {
-                calendarView.addHighlightedDay(workout.date, Color.YELLOW)
+                calendarView.addHighlightedDay(workout.date, Color.LTGRAY)
             }
         }
     }

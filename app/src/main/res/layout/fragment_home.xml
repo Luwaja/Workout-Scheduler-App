@@ -7,46 +7,80 @@
     tools:context=".ui.home.HomeFragment">
 
     <TextView
-        android:id="@+id/text_title"
-        android:layout_width="match_parent"
+        android:id="@+id/text_title_workout"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="0dp"
+        android:layout_marginStart="40dp"
+        android:fontFamily="@font/rosario_bold"
+        android:text="@string/workout"
         android:textAlignment="center"
-        android:textSize="40sp"
-        android:text="@string/workout_scheduler"
-        android:textStyle="bold"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="60sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-        android:id="@+id/line_title"
-        android:layout_width="350dp"
-        android:layout_height="3dp"
-        android:background="#FFFFFF"
+    <ImageView
+        android:id="@+id/weight_icon"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="5dp"
+        android:src="@drawable/baseline_fitness_center_24"
+        android:rotation="100"
+        app:layout_constraintStart_toEndOf="@id/text_title_workout"
+        app:layout_constraintBottom_toBottomOf="@id/text_title_workout"/>
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginBottom="5dp"
+        android:src="@drawable/baseline_directions_run_24"
+
+        app:layout_constraintStart_toEndOf="@id/weight_icon"
+        app:layout_constraintBottom_toBottomOf="@id/text_title_workout"/>
+
+    <TextView
+        android:id="@+id/text_title_scheduler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="-10dp"
+        android:fontFamily="@font/rosario_bold"
+        android:text="@string/scheduler"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="60sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_title" />
+        app:layout_constraintTop_toBottomOf="@id/text_title_workout" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/baseline_calendar_month_24"
+        app:layout_constraintEnd_toStartOf="@id/text_title_scheduler"
+        app:layout_constraintTop_toTopOf="@id/text_title_scheduler"
+        app:layout_constraintBottom_toBottomOf="@id/text_title_scheduler"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_new_workout"
         android:layout_width="350dp"
         android:layout_height="75dp"
         android:layout_marginTop="50dp"
-        android:background="#8E0000"
-        android:textAlignment="center"
+        android:background="@drawable/red_button"
+        android:clickable="true"
+        android:fontFamily="@font/rosario_bold"
         android:gravity="center"
-        android:text="+ New Workout"
+        android:text="@string/new_workout"
+        android:textAlignment="center"
+        android:textColor="@color/white"
         android:textSize="35sp"
         android:textStyle="bold"
-        android:textColor="@color/white"
-        android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/line_title" />
+        app:layout_constraintTop_toBottomOf="@id/text_title_scheduler" />
 
     <TextView
         android:id="@+id/text_upcoming"
@@ -55,91 +89,32 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="8dp"
+        android:fontFamily="@font/rosario"
+        android:text="@string/upcoming_workouts"
         android:textAlignment="center"
-        android:textSize="25sp"
-        android:text="Upcoming workouts"
-        android:textStyle="bold"
         android:textColor="#d4d4d4"
+        android:textSize="25sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_new_workout" />
 
-    <FrameLayout
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/frame_upcoming"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
-        android:background="#FF0000"
+        android:background="@drawable/red_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_upcoming">
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/view_upcoming"
-            android:layout_width="305dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_margin="5dp"
-            android:background="#8E0000"
-            android:elevation="2dp"
-            android:padding="5dp" />
-
-    </FrameLayout>
-
-    <TextView
-        android:id="@+id/text_workout_title"
-        android:layout_width="0dp"
-        android:layout_height="3dp"
-        android:gravity="center"
-        android:text=""
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@id/frame_upcoming"
-        app:layout_constraintTop_toTopOf="@id/frame_upcoming" />
-
-    <View
-        android:layout_width="2dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintStart_toEndOf="@id/text_workout_title"
-        app:layout_constraintTop_toTopOf="@id/text_workout_title"
-        android:background="#FFFFFF" />
-
-    <TextView
-        android:id="@+id/text_workout_date"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:text=""
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@id/frame_upcoming"
-        app:layout_constraintTop_toTopOf="@id/frame_upcoming" />
-
-    <TextView
-        android:id="@+id/text_workout_time"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="5dp"
-        android:gravity="center"
-        android:text=""
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/frame_upcoming"
-        app:layout_constraintEnd_toEndOf="@id/frame_upcoming" />
+        app:layout_constraintTop_toBottomOf="@id/text_upcoming" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/upcoming_example1"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
-        android:background="#b0b0b0"
+        android:background="@drawable/gray_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/frame_upcoming" />
@@ -149,25 +124,9 @@
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
-        android:background="#b0b0b0"
+        android:background="@drawable/gray_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/upcoming_example1" />
-
-    <TextView
-        android:id="@+id/text_home"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.841" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

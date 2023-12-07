@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Workout Reminder App</string>
     <string name="workout_scheduler">Workout Scheduler</string>
     <string name="title_home">Home</string>
@@ -9,11 +9,20 @@
     <string name="workout_title">Workout Title</string>
     <string name="placeholderTime">Month/Day/Year 00:00?m</string>
     <string name="category">Category</string>
-    <string name="descriptionExample">Description description description description description description description description description</string>
+    <string name="descriptionExample" tools:ignore="Typos">Description description description description description description description description description</string>
     <string name="title">Title</string>
-    <string name="descriptionHint">Description ...</string>
+    <string name="descriptionHint">Description …</string>
     <string name="all_workouts">All Workouts</string>
-    <string name="due_date">Due Date</string>
+    <string name="due_date">Select Due Date</string>
     <string name="completed">Completed</string>
-    <string name="sets">Sets</string>
+    <string name="sets">Sets …</string>
+    <string name="delete">Delete</string>
+    <string name="new_workout">+ New Workout</string>
+    <string name="category_hint">Category …</string>
+    <string name="upcoming_workouts">Upcoming workouts</string>
+    <string name="workout">Workout</string>
+    <string name="scheduler">Scheduler</string>
+    <string name="finish_workout">Finish Workout</string>
+    <string name="weight">Weight …</string>
+    <string name="time">Time …</string>
 </resources>

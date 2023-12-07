@@ -42,6 +42,8 @@ class AddWorkoutFragment : Fragment() {
     private lateinit var editTitle: EditText
     private lateinit var editDesc: EditText
     private lateinit var editCategory: EditText
+    private lateinit var editTime: EditText
+    private lateinit var editWeight: EditText
     private lateinit var editDate: Button
     private lateinit var editComplete: CheckBox
 
@@ -58,6 +60,8 @@ class AddWorkoutFragment : Fragment() {
         editTitle = binding.editTitle
         editDesc = binding.editDescription
         editCategory = binding.editCategory
+        editTime = binding.editTime
+        editWeight = binding.editWeight
         editDate = binding.editTextDate
         editComplete = binding.workoutCheckbox
 
@@ -122,12 +126,14 @@ class AddWorkoutFragment : Fragment() {
         if (id != -1) {
             workout = addWorkoutViewModel.curWorkout.value
         } else {
-            workout = Workout(null, "", "", "", false, 0, 0, 0)
+            workout = Workout(null, "", "", "", false, 0, 0, 0, 0)
         }
         if (workout != null) {
             workout.name = editTitle.text.toString()
             workout.description = editDesc.text.toString()
             workout.category = editCategory.text.toString()
+            workout.duration = editTime.text.toString().toLong()
+            workout.weight = editWeight.text.toString().toInt()
             workout.date = java.text.DateFormat.getDateTimeInstance(
                 DateFormat.DEFAULT,
                 DateFormat.SHORT
@@ -141,6 +147,8 @@ class AddWorkoutFragment : Fragment() {
         editTitle.setText(workout.name)
         editDesc.setText(workout.description)
         editCategory.setText(workout.category)
+        editTime.setText(workout.duration.toString())
+        editWeight.setText(workout.weight.toString())
         if (workout.date != null) {
             val cal: Calendar = Calendar.getInstance()
             cal.timeInMillis = workout.date!!

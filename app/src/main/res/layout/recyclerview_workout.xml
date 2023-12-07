@@ -9,9 +9,9 @@
     android:layout_marginBottom="4dp">
 
     <View
-        android:layout_width="5dp"
-        android:layout_height="5dp"
-        android:background="@color/white"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:background="@drawable/bulletpoint"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/tvName"
         app:layout_constraintTop_toTopOf="@id/tvName"
@@ -37,7 +37,7 @@
         android:layout_marginEnd="25dp"
         android:text="@string/placeholderTime"
         android:textSize="15sp"
-        android:textColor="#A5A5A5"
+        android:textColor="#C5C5C5"
         android:textStyle="italic"
         app:layout_constraintTop_toTopOf="@id/tvName"
         app:layout_constraintBottom_toBottomOf="@id/tvName"
@@ -47,7 +47,11 @@
         android:id="@+id/tvCategory"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Category"
+        android:layout_marginTop="2dp"
+        android:text="@string/category"
+        android:textSize="18sp"
+        android:textColor="#C5C5C5"
+        android:textStyle="italic"
         app:layout_constraintStart_toStartOf="@+id/tvName"
         app:layout_constraintTop_toBottomOf="@+id/tvDate"
         app:layout_constraintEnd_toEndOf="@+id/tvName" />
@@ -56,10 +60,11 @@
         android:id="@+id/tvDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:layout_marginStart="25dp"
         android:layout_marginEnd="25dp"
         android:text="@string/descriptionExample"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textColor="@color/white"
         android:maxLines="1"
         android:ellipsize="end"
@@ -68,9 +73,11 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <View
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="2dp"
+        android:layout_marginTop="6dp"
         android:layout_marginEnd="25dp"
+        android:layout_marginStart="25dp"
         android:background="@color/white"
         app:layout_constraintTop_toBottomOf="@id/tvDescription"
         app:layout_constraintStart_toStartOf="@id/tvDescription"

@@ -61,11 +61,9 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-
         firstWorkoutButton = binding.upcomingExample1
         secondWorkoutButton = binding.upcomingExample2
-        activeWorkoutButton = binding.viewUpcoming
+        activeWorkoutButton = binding.frameUpcoming
 
         val newWorkoutButton: AppCompatButton = binding.btnNewWorkout
         newWorkoutButton.setOnClickListener {

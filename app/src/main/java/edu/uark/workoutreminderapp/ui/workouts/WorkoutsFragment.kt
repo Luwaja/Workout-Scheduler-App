@@ -58,9 +58,7 @@ class WorkoutsFragment : Fragment() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        val textView: TextView = binding.textWorkouts
-
-        // This should go through each workout and create the list item for it usingthe adapter.
+        // This should go through each workout and create the list item for it using the adapter.
         workoutsViewModel.allWorkouts.observe(viewLifecycleOwner) { workouts ->
             Log.d("WorkoutsFragment", "Adding workout: ${workouts.size}")
             workouts.let {

@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_navigation_home_to_navigation_addworkout"
             app:destination="@id/navigation_addworkout" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_activeworkout"
+            app:destination="@id/navigation_activeworkout" />
     </fragment>
 
     <fragment
@@ -31,7 +34,11 @@
         android:id="@+id/navigation_activeworkout"
         android:name="edu.uark.workoutreminderapp.ui.activeworkout.ActiveWorkoutFragment"
         android:label="Active Workout"
-        tools:layout="@layout/fragment_activeworkout" />
+        tools:layout="@layout/fragment_activeworkout" >
+        <action
+            android:id="@+id/action_navigation_activeworkout_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_addworkout"
